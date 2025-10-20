@@ -1,7 +1,6 @@
 #!/bin/bash
 
 files_and_paths=(
-  ".tmux.conf:$HOME/.tmux.conf"
   ".config/nvim/lua/plugins:$HOME/.config/nvim/lua/plugins"
   ".config/nvim/lua/config:$HOME/.config/nvim/lua/config"
 )
