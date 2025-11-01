@@ -28,3 +28,5 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+
+vim.opt.clipboard = "unnamedplus"
