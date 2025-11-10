@@ -15,3 +15,19 @@ opt.autoindent = true -- 自動インデント
 
 -- カーソル設定（insertモードでもブロック型）
 opt.guicursor = "" -- すべてのモードでブロックカーソル
+
+-- OSC 52でクリップボード共有を有効化
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+  },
+}
+
+-- または、よりシンプルに
+vim.opt.clipboard = "unnamedplus"

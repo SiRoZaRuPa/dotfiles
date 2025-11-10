@@ -20,3 +20,7 @@ keybind = shift+cmd+n=next_tab
 
 
 keybind = shift+enter=text:\n
+
+# OSC 52を有効化（デフォルトで有効のはず）
+clipboard-read = true
+clipboard-write = true
