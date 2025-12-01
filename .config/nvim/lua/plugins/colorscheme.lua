@@ -1,11 +1,6 @@
 -- ~/.config/nvim/lua/plugins/catppuccin.lua
 return {
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin-latte", -- ここでカラースキームを指定
-    },
-  },
+  { "projekt0n/github-nvim-theme", name = "github-theme" },
   {
     "catppuccin/nvim",
     name = "catppuccin",
