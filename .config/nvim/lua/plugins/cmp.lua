@@ -14,5 +14,10 @@ return {
       -- 明示的に「fallback（何もしない＝改行）」のみに設定します。
       ["<CR>"] = { "fallback" },
     },
+    completion = {
+      ghost_text = {
+        enabled = false,
+      },
+    },
   },
 }
