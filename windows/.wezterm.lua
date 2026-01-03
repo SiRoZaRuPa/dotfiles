@@ -26,7 +26,7 @@ config.window_background_image = "D:/ピクチャ/videoframe_45111.png"
 
 config.window_background_image_hsb = {
 	-- Darken the background image by reducing it to 1/3rd
-	brightness = 0.03,
+	brightness = 0.01,
 	hue = 1.0,
 	saturation = 0.6,
 }
