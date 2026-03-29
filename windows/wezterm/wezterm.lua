@@ -18,7 +18,7 @@ config.default_prog = { git_bash_path, "--login", "-i" }
 config.use_ime = true
 
 -- 見た目
-config.front_end = "WebGpu"
+-- config.front_end = "WebGpu"
 
 -- font
 config.font = wezterm.font_with_fallback({ "Monaspace Neon NF" })
@@ -27,9 +27,9 @@ config.font_size = 14.0
 require("keymaps").apply_to_config(config)
 require("appearance").apply_to_config(config)
 require("statusbar").apply_to_config(config)
-require("background").apply_to_config(config)
 require("tab").apply_to_config(config)
 require("workspace").apply_to_config(config)
+require("background").apply_to_config(config)
 
 -- and finally, return the configuration to wezterm
 return config
