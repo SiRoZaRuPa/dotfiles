@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local module = {}
 
 local appearance = {
-	color_scheme = "Catppuccin Latte",
+	color_scheme = "Atelierforest (light) (terminal.sexy)",
 
 	-- window title
 	-- タイトルバーを非表示
