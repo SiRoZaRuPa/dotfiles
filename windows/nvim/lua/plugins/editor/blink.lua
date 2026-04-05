@@ -1,23 +1,48 @@
+-- windows/nvim/lua/plugins/editor/cmp.lua
 return {
-  "saghen/blink.cmp",
-  -- LazyVimの設定と適切にマージするために opts を使用
-  opts = {
-    keymap = {
-      -- 'super-tab' プリセット:
-      --   Tab: 選択 & 決定
-      --   S-Tab: 前の候補
-      --   C-j/k: 候補移動(環境による)
-      preset = "super-tab",
-
-      -- 【重要】Enterキーの挙動を上書き
-      -- super-tabでもEnterが決定に割り当てられる場合があるため、
-      -- 明示的に「fallback（何もしない＝改行）」のみに設定します。
-      ["<CR>"] = { "fallback" },
-    },
-    completion = {
-      ghost_text = {
-        enabled = false,
-      },
-    },
-  },
+	"saghen/blink.cmp",
+	-- LazyVimの設定と適切にマージするために opts を使用
+	opts = {
+		keymap = {
+			preset = "super-tab",
+			["<CR>"] = { "fallback" },
+		},
+		completion = {
+			ghost_text = {
+				enabled = false,
+			},
+			menu = {
+				border = "rounded",
+				-- 補完ウィンドウの描画設定をカスタマイズ
+				draw = {
+					columns = {
+						{ "label", "label_description", gap = 1 },
+						{ "kind_icon", "kind", "source" }, -- "source" カラムを追加
+					},
+					components = {
+						-- source コンポーネントの定義
+						source = {
+							text = function(ctx)
+								-- ソース名の先頭3文字を大文字にして [LSP] などの形式にする
+								return "[" .. ctx.source_name:sub(1, 3):upper() .. "]"
+							end,
+							highlight = "BlinkCmpSource", -- 必要に応じてハイライトグループを指定
+						},
+					},
+				},
+			},
+			documentation = {
+				window = {
+					border = "rounded",
+				},
+			},
+		},
+		sources = {
+			default = {
+				-- ここに既定のソースリストがある場合はそれを維持してください
+				-- 例: { 'lsp', 'path', 'snippets', 'buffer' }
+				cmdline = {}, -- Disable cmdline completions
+			},
+		},
+	},
 }
