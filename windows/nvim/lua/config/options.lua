@@ -5,6 +5,9 @@
 -- ~/.config/nvim/lua/config/options.lua
 local opt = vim.opt
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- インデント設定
 opt.tabstop = 4 -- タブ文字の幅
 opt.shiftwidth = 4 -- 自動インデントの幅

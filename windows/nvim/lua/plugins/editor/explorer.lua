@@ -48,6 +48,8 @@ return {
 		},
 		opts = {
 			filesystem = {
+				-- netrw関連
+				hijack_netrw_behavior = "open_default",
 				-- 隠しファイルをデフォルトで表示する設定
 				filtered_items = {
 					visible = true, -- これをtrueにすると、以下の非表示設定が反映されます
