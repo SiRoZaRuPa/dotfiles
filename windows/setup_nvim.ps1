@@ -1,25 +1,19 @@
-# 1. Check for Administrator privileges
-if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Error "This script must be run as Administrator. Please restart PowerShell as Administrator."
-    exit
-}
-
 # Set execution policy for the current process
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
 # 2. Install Chocolatey
-if (Get-Command choco -ErrorAction SilentlyContinue) {
-    Write-Host "[SKIP] Chocolatey is already installed." -ForegroundColor Cyan
+if (Get-Command scoop -ErrorAction SilentlyContinue) {
+    Write-Host "[SKIP] Scoop is already installed." -ForegroundColor Cyan
 } else {
-    Write-Host "[RUN] Installing Chocolatey..." -ForegroundColor Yellow
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    Write-Host "[RUN] Installing Scoop..." -ForegroundColor Yellow
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }
 
 # 3. Install Neovim and Dependencies
 Write-Host "`n[RUN] Installing Neovim and required tools..." -ForegroundColor Yellow
 # Installing git, ripgrep, fd, and make for LazyVim requirements
-choco install ripgrep fd mingw cmake make unzip -y
+scoop install ripgrep fd mingw cmake make unzip -y
 
 # 4. Setup LazyVim
 Write-Host "`n[RUN] Setting up LazyVim configuration..." -ForegroundColor Yellow
@@ -63,7 +57,7 @@ if (Test-Path $sourceNvim) {
     }
     
     # Create Symbolic Link
-    New-Item -ItemType SymbolicLink -Path $targetNvim -Value $sourceNvim -Force
+    cmd /c mklink /j $targetNvim $sourceNvim
     Write-Host "[SUCCESS] Symbolic link created for Neovim." -ForegroundColor Green
 } else {
     Write-Warning "Source directory not found: $sourceNvim"
