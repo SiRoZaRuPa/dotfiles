@@ -10,10 +10,14 @@ if (Get-Command scoop -ErrorAction SilentlyContinue) {
     Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }
 
+scoop bucket add main
+scoop bucket add versions
+
 # 3. Install Neovim and Dependencies
 Write-Host "`n[RUN] Installing Neovim and required tools..." -ForegroundColor Yellow
 # Installing git, ripgrep, fd, and make for LazyVim requirements
 scoop install ripgrep fd mingw cmake make unzip -y
+scoop install neovim@0.11.7
 
 # 4. Setup LazyVim
 Write-Host "`n[RUN] Setting up LazyVim configuration..." -ForegroundColor Yellow
